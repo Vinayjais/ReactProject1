@@ -23,6 +23,30 @@ function App() {
     const [foodItemsList, setFoodItems] = useState(foodItmes);
     const [SkinCareItemsList, setSkinCareItems] = useState(SkinCareItems);
 
+
+    function UpdateElectronicLis(itemId){
+
+      setElectronicItems((prevItems)=>{
+         const UpdateElectronicList = prevItems.filter((item)=> item.Id !== itemId);
+         return UpdateElectronicList;
+      })
+
+    };
+
+    function UpdateFoodList(itemId){
+            
+      setFoodItems((prevItems)=>{
+        const UpdatedList = prevItems.filter((item)=> item.Id !== itemId);
+        return UpdatedList;
+      })
+    };
+
+    function UpdateSkinCareList(itemId){
+       setSkinCareItems((prevItems)=>{
+          const UpdatedList =prevItems.filter((item)=> item.Id !== itemId);
+          return UpdatedList;
+       })
+    };
       
 
    function saveData(ProductDetailes){
@@ -50,9 +74,9 @@ function App() {
     <div className="App">
       <h3>WelCome</h3>
        <AddForm upData={saveData}></AddForm>
-       <ProductLister  items={electronicsItemsList} Category="Electronic Items --" ></ProductLister>
-       <ProductLister items={foodItemsList} Category="Food Items --" ></ProductLister>
-       <ProductLister items={SkinCareItemsList} Category="SkinCare Items --" ></ProductLister>
+       <ProductLister  items={electronicsItemsList} Category="Electronic Items --" onDelete={UpdateElectronicLis} ></ProductLister>
+       <ProductLister items={foodItemsList} Category="Food Items --" onDelete={UpdateFoodList} ></ProductLister>
+       <ProductLister items={SkinCareItemsList} Category="SkinCare Items --"onDelete={UpdateSkinCareList} ></ProductLister>
      </div>
   );
 }
